@@ -46,10 +46,9 @@ RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.n
 &&  glide_version="$(curl -sSLf https://glide.sh/version)" \
 &&  mkdir -p ${glide_install_dir} \
 &&  curl -fsSL https://github.com/Masterminds/glide/releases/download/${glide_version}/glide-${glide_version}-linux-amd64.tar.gz | tar zx --strip-components=1 -C ${glide_install_dir} \
-&&  mkdir -p $GOPATH/src/github.com/nokia \
-&&  git clone https://github.com/nokia/danm.git $GOPATH/src/github.com/nokia/danm \
+&&  mkdir -p $GOPATH/src/github.com/nokia/danm \
+&&  curl -fsSL -k https://github.com/nokia/danm/archive/v${SVCWATCHER_VERSION}.tar.gz | tar zx --strip-components=1 -C $GOPATH/src/github.com/nokia/danm \
 &&  cd $GOPATH/src/github.com/nokia/danm \
-&&  git checkout ${NETWATCHER_VERSION} \
 &&  glide install --strip-vendor \
 &&  go get -d github.com/vishvananda/netlink \
 &&  go get github.com/containernetworking/plugins/pkg/ns \

@@ -31,10 +31,9 @@ RUN mkdir -p $GOPATH/bin \
 RUN apk add --no-cache curl libcap iputils
 
 RUN apk add --no-cache --virtual .tools ca-certificates gcc musl-dev go glide git \
-&&  mkdir -p $GOPATH/src/github.com/nokia \
-&&  git clone https://github.com/nokia/danm.git $GOPATH/src/github.com/nokia/danm \
+&&  mkdir -p $GOPATH/src/github.com/nokia/danm \
+&&  curl -fsSL -k https://github.com/nokia/danm/archive/v${NETWATCHER_VERSION}.tar.gz | tar zx --strip-components=1 -C $GOPATH/src/github.com/nokia/danm \
 &&  cd $GOPATH/src/github.com/nokia/danm \
-&&  git checkout ${NETWATCHER_VERSION} \
 &&  glide install --strip-vendor \
 &&  go get -d github.com/vishvananda/netlink \
 &&  go get github.com/containernetworking/plugins/pkg/ns \
