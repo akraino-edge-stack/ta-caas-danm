@@ -16,6 +16,24 @@
       "revId": "3d2e40527e03ae934f07b586238d0a508a691750",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe09670d_a365002a",
+        "filename": "docker-build/cni-builder/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 185
+      },
+      "writtenOn": "2019-05-09T09:16:03Z",
+      "side": 1,
+      "message": "Sure, I\u0027ll change it in PS2.",
+      "parentUuid": "bebb3aac_2ff667bf",
+      "revId": "3d2e40527e03ae934f07b586238d0a508a691750",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
