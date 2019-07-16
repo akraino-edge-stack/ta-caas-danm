@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47076fea_01c6bbd5",
+        "filename": "ansible/roles/danm_setup/tasks/danm-tenant-configs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-07-16T14:10:39Z",
+      "side": 1,
+      "message": "typo: tenant",
+      "revId": "dd09287c6209af1cbf1b6fdab868249a29f8448a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ba17fe2_45300978",
+        "filename": "ansible/roles/danm_setup/templates/danm_tenant_config.yaml.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-07-16T14:10:39Z",
+      "side": 1,
+      "message": "could enhance the code so it can handle vxlans too, even if this is not currently allowed on the user-config interface",
+      "revId": "dd09287c6209af1cbf1b6fdab868249a29f8448a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
