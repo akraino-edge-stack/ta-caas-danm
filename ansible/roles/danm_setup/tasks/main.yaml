@@ -13,34 +13,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: copy DANM CRD templates to infra template directory
-  template:
-    src: "{{ item }}"
-    dest: "{{ caas.manifests_directory }}/{{ item }}"
-  with_items:
-    - danmep_crd_schema.yaml
-    - danmnet_crd_schema.yaml
-
-- name: create DanmEp CRD API in K8s
+- name: create Danm CRD APIs in K8s
   kubectl:
-    manifest: "{{ caas.manifests_directory }}/danmep_crd_schema.yaml"
+    manifest: "{{ item }}"
     state: present
+  with_fileglob: "{{ caas.danm_crd_dir }}/*"
+
+- name: get CRD names
+  set_fact:
+    crd_name: "{{ lookup('file', item) | from_yaml | json_query('spec.names.plural') }}"
+  with_fileglob: "{{ caas.danm_crd_dir }}/*"
+  register: created_crds
 
 - name: wait and check DanmEp API availability
-  shell: "kubectl get crd --all-namespaces | grep danmeps | wc -l"
-  register: ep_result
-  until: ep_result.stdout == "1"
+  shell: "kubectl get crd --all-namespaces | grep {{ item.ansible_facts.crd_name }} | wc -l"
+  register: crd_result
+  until: crd_result.stdout == "1"
   retries: 60
   delay: 6
+  with_items: "{{ created_crds.results }}"
 
-- name: create DanmNet CRD API in K8s
-  kubectl:
-    manifest: "{{ caas.manifests_directory }}/danmnet_crd_schema.yaml"
-    state: present
-
-- name: wait and check DanmNet API availability
-  shell: "kubectl get crd --all-namespaces | grep danmnets | wc -l"
-  register: net_result
-  until: net_result.stdout == "1"
-  retries: 60
-  delay: 6
+- name: create tenant config
+  include_tasks: danm-tenant-configs.yaml

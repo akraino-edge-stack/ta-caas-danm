@@ -12,17 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-%define COMPONENT netwatcher
+%define COMPONENT danm-webhook
 %define RPM_NAME caas-%{COMPONENT}
 %define RPM_MAJOR_VERSION 4.0.0
-%define RPM_MINOR_VERSION 3
+%define RPM_MINOR_VERSION 0
 %define DANM_VERSION v%{RPM_MAJOR_VERSION}
 %define IMAGE_TAG %{RPM_MAJOR_VERSION}-%{RPM_MINOR_VERSION}
 
 Name:           %{RPM_NAME}
 Version:        %{RPM_MAJOR_VERSION}
 Release:        %{RPM_MINOR_VERSION}%{?dist}
-Summary:        Containers as a Service netwatcher component
+Summary:        Containers as a Service svcwatcher component
 License:        %{_platform_license} and BSD 3-Clause License
 URL:            https://github.com/nokia/danm
 BuildArch:      x86_64
@@ -33,7 +33,7 @@ Requires: docker-ce >= 18.09.2, rsync
 BuildRequires: docker-ce-cli >= 18.09.2, xz
 
 %description
-This RPM contains the netwatcher container image, and related deployment artifacts for the CaaS subsystem.
+This RPM contains the DANM project's webhook sub-component for CaaS subsystem.
 
 %prep
 %autosetup
@@ -49,7 +49,7 @@ docker build \
   --build-arg http_proxy="${http_proxy}" \
   --build-arg https_proxy="${https_proxy}" \
   --build-arg no_proxy="${no_proxy}" \
-  --build-arg NETWATCHER="%{DANM_VERSION}" \
+  --build-arg DANM_WEBHOOK_VERSION="%{DANM_VERSION}" \
   --tag %{COMPONENT}:%{IMAGE_TAG} \
   %{_builddir}/%{RPM_NAME}-%{RPM_MAJOR_VERSION}/docker-build/%{COMPONENT}/
 
@@ -63,27 +63,14 @@ docker rmi -f %{COMPONENT}:%{IMAGE_TAG}
 mkdir -p %{buildroot}/%{_caas_container_tar_path}/
 rsync -av %{_builddir}/%{RPM_NAME}-%{RPM_MAJOR_VERSION}/docker-save/%{COMPONENT}:%{IMAGE_TAG}.tar %{buildroot}/%{_caas_container_tar_path}/
 
-mkdir -p %{buildroot}/%{_playbooks_path}/
-rsync -av ansible/playbooks/danm_setup.yaml %{buildroot}/%{_playbooks_path}/
-
-mkdir -p %{buildroot}/%{_roles_path}/
-rsync -av ansible/roles/danm_setup %{buildroot}/%{_roles_path}/
-
 %files
 %{_caas_container_tar_path}/%{COMPONENT}:%{IMAGE_TAG}.tar
-%{_playbooks_path}/danm_setup.yaml
-%{_roles_path}/danm_setup
 
 %preun
 
 %post
-mkdir -p %{_postconfig_path}/
-ln -sf %{_playbooks_path}/danm_setup.yaml %{_postconfig_path}/
 
 %postun
-if [ $1 -eq 0 ]; then
-    rm -f %{_postconfig_path}/danm_setup.yaml
-fi
 
 %clean
 rm -rf ${buildroot}
