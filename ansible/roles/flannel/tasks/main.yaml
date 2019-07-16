@@ -30,22 +30,15 @@
 
 - name: create Flannel DS
   kubectl:
-    manifest: "{{ caas.manifests_directory }}/flannel-ds.yaml"
+    manifest: "{{ caas.manifests_directory }}/flannel-ds.yaml.j2"
     state: present
 
-- name: template DanmNet file for Flannel network for kube-system namespace
+- name: template default TenantNetwork for kube-system namespace
   template:
-    src: flannel_dnet.yaml
-    dest: "{{ caas.manifests_directory }}/flannel-danm_net_kube_system_ns.yaml"
+    src: flannel_tnet.yaml
+    dest: "{{ caas.manifests_directory }}/flannel-tnet_kube_system_ns.yaml"
 
-- name: wait for DanmNet to be available
-  command: "kubectl api-resources"
-  register: kube_api_resources
-  until: kube_api_resources.stdout | search('danmnets')
-  retries: 10
-  delay: 1
-
-- name: create Flannel DanmNet within kube-system namespace
+- name: create TenantNetwork within kube-system namespace
   kubectl:
-    manifest: "{{ caas.manifests_directory }}/flannel-danm_net_kube_system_ns.yaml"
+    manifest: "{{ caas.manifests_directory }}/flannel-tnet_kube_system_ns.yaml"
     state: present
