@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "381abc35_25113284",
+        "filename": "docker-build/danm-webhook/Dockerfile",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-07-25T16:21:44Z",
+      "side": 1,
+      "message": "hyperdanm?",
+      "revId": "d45b4117f30f9ad842c24f0c7c9fd8524a7f358f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
