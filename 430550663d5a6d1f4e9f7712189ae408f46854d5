@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8f3e268_c3fe407d",
+        "filename": "docker-build/danm-builder/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-08-05T19:36:24Z",
+      "side": 1,
+      "message": "where are the webhook, netwatcher, and svcwatcher binaries being built if not here?",
+      "revId": "430550663d5a6d1f4e9f7712189ae408f46854d5",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
