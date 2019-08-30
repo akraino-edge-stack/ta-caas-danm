@@ -15,7 +15,7 @@
 %define COMPONENT danm
 %define RPM_NAME caas-%{COMPONENT}
 %define RPM_MAJOR_VERSION 4.0.0
-%define RPM_MINOR_VERSION 5
+%define RPM_MINOR_VERSION 6
 %define DANM_VERSION 687031341573550f387e109b273d8dd0cebf93bf
 %define CNI_VERSION 0.8.1
 %define go_version 1.12.9
@@ -35,7 +35,7 @@ Summary:        Containers as a Service %{COMPONENT} component
 License:        %{_platform_license} and BSD 3-Clause License
 URL:            https://github.com/nokia/danm
 BuildArch:      x86_64
-Vendor:         %{_platform_vendor} and Nokia
+Vendor:         %{_platform_vendor} and Nokia and Others unmodified
 Source0:        %{name}-%{version}.tar.gz
 
 Requires: docker-ce >= 18.09.2, iputils, rsync
