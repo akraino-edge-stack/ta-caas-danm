@@ -35,7 +35,7 @@ Summary:        Containers as a Service %{COMPONENT} component
 License:        %{_platform_license} and BSD 3-Clause License
 URL:            https://github.com/nokia/danm
 BuildArch:      x86_64
-Vendor:         %{_platform_vendor} and Nokia
+Vendor:         %{_platform_vendor} and Nokia and Others unmodified
 Source0:        %{name}-%{version}.tar.gz
 
 Requires: docker-ce >= 18.09.2, iputils, rsync
