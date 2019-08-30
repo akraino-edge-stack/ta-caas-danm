@@ -25,7 +25,7 @@ metadata:
 data:
   net-conf.json: |
     {
-      "Network": "10.244.0.0/16",
+      "Network": "{{ caas.oam_cidr }}",
       "Backend": {
         "Type": "vxlan"
       }
