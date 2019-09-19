@@ -32,6 +32,3 @@
   retries: 60
   delay: 6
   with_items: "{{ created_crds.results }}"
-
-- name: create tenant config
-  include_tasks: danm-tenant-configs.yaml
