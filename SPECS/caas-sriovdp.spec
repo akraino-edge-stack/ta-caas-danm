@@ -14,10 +14,11 @@
 
 %define COMPONENT sriovdp
 %define RPM_NAME caas-%{COMPONENT}
-%define RPM_MAJOR_VERSION 2.0.0
-%define RPM_MINOR_VERSION 5
+%define RPM_MAJOR_VERSION 3.0.0
+%define RPM_MINOR_VERSION 0
 %define IMAGE_TAG %{RPM_MAJOR_VERSION}-%{RPM_MINOR_VERSION}
 %define go_version 1.12.9
+%define SRIOVDP_HASH a015e56ae715e2b6dae15e42827e4e8f43eeceac
 
 Name:           %{RPM_NAME}
 Version:        %{RPM_MAJOR_VERSION}
@@ -50,6 +51,7 @@ docker build \
   --build-arg https_proxy="${https_proxy}" \
   --build-arg no_proxy="${no_proxy}" \
   --build-arg SRIOVDP="%{RPM_MAJOR_VERSION}" \
+  --build-arg SRIOVDP_HASH="%{SRIOVDP_HASH}" \
   --build-arg go_version="%{go_version}" \
   --tag %{COMPONENT}:%{IMAGE_TAG} \
   %{_builddir}/%{RPM_NAME}-%{RPM_MAJOR_VERSION}/docker-build/%{COMPONENT}/
