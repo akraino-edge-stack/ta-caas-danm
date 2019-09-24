@@ -206,8 +206,8 @@
     },
     {
       "name": "sriovdp",
-      "version": "2.0.0",
-      "source-url": "https://github.com/intel/sriov-network-device-plugin/archive/v2.0.0.tar.gz",
+      "version": "3.0.0",
+      "source-url": "https://github.com/intel/sriov-network-device-plugin/archive/v3.0.0.tar.gz",
       "foss": "yes"
     }
   ]
