@@ -15,7 +15,7 @@
 %define COMPONENT danm
 %define RPM_NAME caas-%{COMPONENT}
 %define RPM_MAJOR_VERSION 4.0.0
-%define RPM_MINOR_VERSION 6
+%define RPM_MINOR_VERSION 7
 %define DANM_VERSION 687031341573550f387e109b273d8dd0cebf93bf
 %define CNI_VERSION 0.8.1
 %define go_version 1.12.9
@@ -27,6 +27,13 @@
 %define built_binaries_dir /binary-save
 %define danm_components danm fakeipam
 %define cnis flannel sriov
+%ifarch aarch64
+%define CENTOS_BASE centos@sha256:df89b0a0b42916b5b31b334fd52d3e396c226ad97dfe772848bdd6b00fb42bf0
+%define CNI_PLUGINS_ARCH arm64
+%else
+%define CENTOS_BASE centos:7.6.1810
+%define CNI_PLUGINS_ARCH amd64
+%endif
 
 Name:           %{RPM_NAME}
 Version:        %{RPM_MAJOR_VERSION}
@@ -34,7 +41,7 @@ Release:        %{RPM_MINOR_VERSION}%{?dist}
 Summary:        Containers as a Service %{COMPONENT} component
 License:        %{_platform_license} and BSD 3-Clause License
 URL:            https://github.com/nokia/danm
-BuildArch:      x86_64
+BuildArch:      %{_arch}
 Vendor:         %{_platform_vendor} and Nokia and Others unmodified
 Source0:        %{name}-%{version}.tar.gz
 
@@ -52,7 +59,7 @@ This RPM contains the DANM and related CNI binaries for CaaS subsystem.
 
 %build
 mkdir -p %{binary_build_dir}/cni
-curl -fsSL -k https://github.com/containernetworking/plugins/releases/download/v%{CNI_VERSION}/cni-plugins-linux-amd64-v%{CNI_VERSION}.tgz  | tar zx --strip-components=1 -C %{binary_build_dir}/cni
+curl -fsSL -k https://github.com/containernetworking/plugins/releases/download/v%{CNI_VERSION}/cni-plugins-linux-%{CNI_PLUGINS_ARCH}-v%{CNI_VERSION}.tgz  | tar zx --strip-components=1 -C %{binary_build_dir}/cni
 
 # Build DANM binaries
 docker build \
@@ -69,6 +76,7 @@ docker build \
   --build-arg go_version="%{go_version}" \
   --build-arg binaries="%{built_binaries_dir}" \
   --build-arg components="%{danm_components}" \
+  --build-arg CENTOS_BASE="%{CENTOS_BASE}" \
   --tag danm-builder:%{IMAGE_TAG} \
   %{docker_build_dir}/danm-builder/
 
@@ -94,6 +102,7 @@ docker build \
   --build-arg go_version="%{go_version}" \
   --build-arg SRIOV_VERSION="%{SRIOV_VERSION}" \
   --build-arg binaries="%{built_binaries_dir}" \
+  --build-arg CENTOS_BASE="%{CENTOS_BASE}" \
   --tag cni-builder:%{IMAGE_TAG} \
   %{docker_build_dir}/cni-builder/
 
