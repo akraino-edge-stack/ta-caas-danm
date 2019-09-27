@@ -15,7 +15,7 @@
 %define COMPONENT danm
 %define RPM_NAME caas-%{COMPONENT}
 %define RPM_MAJOR_VERSION 4.1.0
-%define RPM_MINOR_VERSION 0
+%define RPM_MINOR_VERSION 1
 %define DANM_VERSION 93b46c01682b492efec9c4661990d89976d2e3e5
 %define CNI_VERSION 0.8.1
 %define go_version 1.12.10
@@ -27,6 +27,12 @@
 %define built_binaries_dir /binary-save
 %define danm_components danm fakeipam
 %define cnis flannel sriov
+%define centos_build 191001
+%ifarch aarch64
+%define CNI_PLUGINS_ARCH arm64
+%else
+%define CNI_PLUGINS_ARCH amd64
+%endif
 
 Name:           %{RPM_NAME}
 Version:        %{RPM_MAJOR_VERSION}
@@ -34,12 +40,12 @@ Release:        %{RPM_MINOR_VERSION}%{?dist}
 Summary:        Containers as a Service %{COMPONENT} component
 License:        %{_platform_license} and BSD 3-Clause License
 URL:            https://github.com/nokia/danm
-BuildArch:      x86_64
+BuildArch:      %{_arch}
 Vendor:         %{_platform_vendor} and Nokia and Others unmodified
 Source0:        %{name}-%{version}.tar.gz
 
 Requires: docker-ce >= 18.09.2, iputils, rsync
-BuildRequires: docker-ce-cli >= 18.09.2, curl
+BuildRequires: docker-ce-cli >= 18.09.2, curl, wget
 
 # more info at: https://fedoraproject.org/wiki/Packaging:Debuginfo No build ID note in Flannel
 %global debug_package %{nil}
@@ -52,9 +58,10 @@ This RPM contains the DANM and related CNI binaries for CaaS subsystem.
 
 %build
 mkdir -p %{binary_build_dir}/cni
-curl -fsSL -k https://github.com/containernetworking/plugins/releases/download/v%{CNI_VERSION}/cni-plugins-linux-amd64-v%{CNI_VERSION}.tgz  | tar zx --strip-components=1 -C %{binary_build_dir}/cni
+curl -fsSL -k https://github.com/containernetworking/plugins/releases/download/v%{CNI_VERSION}/cni-plugins-linux-%{CNI_PLUGINS_ARCH}-v%{CNI_VERSION}.tgz  | tar zx --strip-components=1 -C %{binary_build_dir}/cni
 
 # Build DANM binaries
+wget --progress=dot:giga http://artifacts.ci.centos.org/sig-cloudinstance/centos-7-%{centos_build}/%{_arch}/centos-7-%{_arch}-docker.tar.xz -O %{docker_build_dir}/danm-builder/centos-7-docker.tar.xz
 docker build \
   --network=host \
   --no-cache \
@@ -81,6 +88,7 @@ docker rm -f ${builder_container}
 docker rmi danm-builder:%{IMAGE_TAG}
 
 # Build CNI binaries
+wget --progress=dot:giga http://artifacts.ci.centos.org/sig-cloudinstance/centos-7-%{centos_build}/%{_arch}/centos-7-%{_arch}-docker.tar.xz -O %{docker_build_dir}/cni-builder/centos-7-docker.tar.xz
 docker build \
   --network=host \
   --no-cache \

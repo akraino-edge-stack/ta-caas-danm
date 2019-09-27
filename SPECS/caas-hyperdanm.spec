@@ -15,7 +15,7 @@
 %define COMPONENT hyperdanm
 %define RPM_NAME caas-%{COMPONENT}
 %define RPM_MAJOR_VERSION 4.1.0
-%define RPM_MINOR_VERSION 0
+%define RPM_MINOR_VERSION 1
 %define DANM_VERSION 93b46c01682b492efec9c4661990d89976d2e3e5
 %define go_version 1.12.10
 %define IMAGE_TAG %{RPM_MAJOR_VERSION}-%{RPM_MINOR_VERSION}
@@ -24,6 +24,7 @@
 %define docker_save_dir %{_builddir}/%{RPM_NAME}-%{RPM_MAJOR_VERSION}/docker-save
 %define binary_build_dir %{_builddir}/%{RPM_NAME}-%{RPM_MAJOR_VERSION}/binary-save
 %define built_binaries_dir /binary-save
+%define centos_build 191001
 
 Name:           %{RPM_NAME}
 Version:        %{RPM_MAJOR_VERSION}
@@ -31,12 +32,12 @@ Release:        %{RPM_MINOR_VERSION}%{?dist}
 Summary:        Containers as a Service %{COMPONENT} component
 License:        %{_platform_license} and BSD 3-Clause License
 URL:            https://github.com/nokia/danm
-BuildArch:      x86_64
+BuildArch:      %{_arch}
 Vendor:         %{_platform_vendor} and Nokia and Others unmodified
 Source0:        %{name}-%{version}.tar.gz
 
 Requires:       docker-ce >= 18.09.2, rsync
-BuildRequires:  docker-ce-cli >= 18.09.2, xz
+BuildRequires:  docker-ce-cli >= 18.09.2, xz, wget
 Obsoletes:      caas-danm-webhook <= 4.0.0, caas-netwatcher <= 4.0.0, caas-svcwatcher <= 4.0.0
 
 %description
@@ -46,6 +47,7 @@ This RPM contains the %{COMPONENT} container image, and related deployment artif
 %autosetup
 
 %build
+wget --progress=dot:giga http://artifacts.ci.centos.org/sig-cloudinstance/centos-7-%{centos_build}/%{_arch}/centos-7-%{_arch}-docker.tar.xz -O %{docker_build_dir}/danm-builder/centos-7-docker.tar.xz
 # Build DANM binaries
 docker build \
   --network=host \
