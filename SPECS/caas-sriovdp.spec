@@ -15,7 +15,7 @@
 %define COMPONENT sriovdp
 %define RPM_NAME caas-%{COMPONENT}
 %define RPM_MAJOR_VERSION 2.0.0
-%define RPM_MINOR_VERSION 5
+%define RPM_MINOR_VERSION 6
 %define IMAGE_TAG %{RPM_MAJOR_VERSION}-%{RPM_MINOR_VERSION}
 %define go_version 1.12.9
 
@@ -25,7 +25,7 @@ Release:        %{RPM_MINOR_VERSION}%{?dist}
 Summary:        Containers as a Service sriov network device plugin component
 License:        %{_platform_license} and Apache License 2.0
 URL:            https://github.com/intel/sriov-network-device-plugin/
-BuildArch:      x86_64
+BuildArch:      %{_arch}
 Vendor:         %{_platform_vendor} and intel/sriov-network-device-plugin unmodified
 Source0:        %{name}-%{version}.tar.gz
 
