@@ -16,6 +16,24 @@
       "revId": "152845cf845aa447baeb5a241f82a6fd6dc69a8f",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb70b243_08a6b650",
+        "filename": "ansible/roles/danm_setup/templates/danm_tenant_config.yaml.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 186
+      },
+      "writtenOn": "2019-09-27T08:06:25Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "4fffbeb7_6cbd8887",
+      "revId": "152845cf845aa447baeb5a241f82a6fd6dc69a8f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
