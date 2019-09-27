@@ -15,7 +15,7 @@
 %define COMPONENT flannel
 %define RPM_NAME caas-%{COMPONENT}
 %define RPM_MAJOR_VERSION 0.11.0
-%define RPM_MINOR_VERSION 9
+%define RPM_MINOR_VERSION 10
 %define IMAGE_TAG %{RPM_MAJOR_VERSION}-%{RPM_MINOR_VERSION}
 
 Name:           %{RPM_NAME}
@@ -24,7 +24,7 @@ Release:        %{RPM_MINOR_VERSION}%{?dist}
 Summary:        Containers as a Service flannel component
 License:        %{_platform_license} and MIT license and BSD and Apache License and ISC License and COMMON DEVELOPMENT AND DISTRIBUTION LICENSE and GNU Lesser General Public License v3.0 only
 URL:            https://github.com/coreos/flannel
-BuildArch:      x86_64
+BuildArch:      %{_arch}
 Vendor:         %{_platform_vendor} and coreos/flannel unmodified
 Source0:        %{name}-%{version}.tar.gz
 
@@ -49,7 +49,6 @@ docker build \
   --build-arg https_proxy="${https_proxy}" \
   --build-arg no_proxy="${no_proxy}" \
   --build-arg FLANNEL="%{RPM_MAJOR_VERSION}" \
-  --build-arg FLANNEL_ARCHITECTURE="amd64" \
   --tag %{COMPONENT}:%{IMAGE_TAG} \
   %{_builddir}/%{RPM_NAME}-%{RPM_MAJOR_VERSION}/docker-build/%{COMPONENT}/
 

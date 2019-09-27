@@ -17,14 +17,13 @@ MAINTAINER Levente Kale <levente.kale@nokia.com>
 
 ARG FLANNEL
 ENV FLANNEL_VERSION=$FLANNEL
-ARG FLANNEL_ARCHITECTURE
-ENV FLANNEL_ARCH=$FLANNEL_ARCHITECTURE
 
 RUN apk add --no-cache wget iproute2 net-tools ca-certificates iptables strongswan && update-ca-certificates && \
     apk add wireguard-tools --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community
 
 RUN mkdir -p /opt/bin && \
-    wget -O /opt/bin/flanneld https://github.com/coreos/flannel/releases/download/v${FLANNEL_VERSION}/flanneld-${FLANNEL_ARCH} && \
+    if [ $(uname -m) == 'aarch64' ]; then HOST_ARCH=arm64; else HOST_ARCH=amd64; fi && \
+    wget -O /opt/bin/flanneld https://github.com/coreos/flannel/releases/download/v${FLANNEL_VERSION}/flanneld-${HOST_ARCH} && \
     chmod +x /opt/bin/flanneld && \
     wget -O /opt/bin/mk-docker-opts.sh https://github.com/coreos/flannel/blob/v${FLANNEL_VERSION}/dist/mk-docker-opts.sh
 
