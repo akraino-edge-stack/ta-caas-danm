@@ -16,6 +16,24 @@
       "revId": "b542f886b12edcebc6ac156e02e14ece84f4d799",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c204fe3e_7dd38af3",
+        "filename": "ansible/roles/danm_setup/defaults/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 186
+      },
+      "writtenOn": "2019-09-27T13:59:41Z",
+      "side": 1,
+      "message": "Depends on the intention. :) Any new variable should use this file, so I believe the existence of this file can encourage the use of variables instead of hardcoded values.",
+      "parentUuid": "ad19b537_cb591e59",
+      "revId": "b542f886b12edcebc6ac156e02e14ece84f4d799",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
