@@ -39,7 +39,7 @@ spec:
      #securityContext:
      #     runAsUser: {{ caas.uid.flannel }}
       tolerations:
-      - key: node-role.kubernetes.io/master
+      - key: node.kubernetes.io/master
         operator: Exists
         effect: NoSchedule
       containers:
