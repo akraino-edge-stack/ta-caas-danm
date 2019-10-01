@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2f00240_2842f857",
+        "filename": "SPECS/caas-danm.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-10-01T15:20:23Z",
+      "side": 1,
+      "message": "same comment here: if there is a common version working for all archs, let\u0027s use that one for both",
+      "revId": "0be3dad51eeaa101f9ef0ca9723f3e6d48294bae",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d33031f_892fddec",
+        "filename": "SPECS/caas-flannel.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-10-01T15:20:23Z",
+      "side": 1,
+      "message": "I think this we can just push this switch into the Dockerfile level\nthat would be inline with the changes you did in all the other Dockerfiles, compared to having a special handling only here",
+      "revId": "0be3dad51eeaa101f9ef0ca9723f3e6d48294bae",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2530697e_b2e59381",
+        "filename": "SPECS/caas-hyperdanm.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-10-01T15:20:23Z",
+      "side": 1,
+      "message": "same comment, common CentOS pls if possible",
+      "revId": "0be3dad51eeaa101f9ef0ca9723f3e6d48294bae",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
