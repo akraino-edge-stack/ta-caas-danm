@@ -50,7 +50,7 @@ spec:
         args:
         - --ip-masq
         - --kube-subnet-mgr
-        - --iface={{ networking.infra_internal.interface }}
+        - --iface={{ networking.get('caas_oam', {}).get('interface') | default(networking.infra_internal.interface, True) }}
         securityContext:
           privileged: true
         env:
