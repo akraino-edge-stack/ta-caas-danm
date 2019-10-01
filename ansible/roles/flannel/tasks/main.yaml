@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: collect flannel interfaces
+  set_fact:
+    flannel_interfaces: "{{ hostvars.values() | json_query(interface_query) | unique | list }}"
+
 - name: template Flannel DaemonSet file
   template:
     src: flannel-ds.yaml
