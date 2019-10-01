@@ -1,3 +1,4 @@
+#jinja2: lstrip_blocks: True
 {#
 Copyright 2019 Nokia
 
@@ -50,7 +51,9 @@ spec:
         args:
         - --ip-masq
         - --kube-subnet-mgr
-        - --iface={{ networking.infra_internal.interface }}
+        {% for interface in flannel_interfaces | default([]) %}
+        - --iface={{ interface }}
+        {% endfor %}
         securityContext:
           privileged: true
         env:
