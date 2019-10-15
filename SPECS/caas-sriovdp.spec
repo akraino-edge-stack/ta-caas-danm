@@ -17,7 +17,7 @@
 %define RPM_MAJOR_VERSION 3.0.0
 %define RPM_MINOR_VERSION 0
 %define IMAGE_TAG %{RPM_MAJOR_VERSION}-%{RPM_MINOR_VERSION}
-%define go_version 1.12.9
+%define go_version 1.12.10
 %define SRIOVDP_HASH a015e56ae715e2b6dae15e42827e4e8f43eeceac
 
 Name:           %{RPM_NAME}
