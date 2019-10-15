@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2e121c7_a7868b1d",
+        "filename": "SPECS/caas-sriovdp.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-10-15T12:12:35Z",
+      "side": 1,
+      "message": "missed this one",
+      "revId": "666962f99e9fdb2b5e4775f30400d7b687395f9a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
