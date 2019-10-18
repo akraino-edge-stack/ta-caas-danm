@@ -70,6 +70,24 @@
       "revId": "b257d208f31967f08fbfa826d8d4e963a8f320e4",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23310082_cbb22619",
+        "filename": "ansible/roles/flannel/templates/flannel-ds.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 186
+      },
+      "writtenOn": "2019-10-18T10:52:50Z",
+      "side": 1,
+      "message": "Line #22 in ansible/roles/flannel/defaults/main.yaml already takes care about it.",
+      "parentUuid": "181bea33_6d3bc9ba",
+      "revId": "b257d208f31967f08fbfa826d8d4e963a8f320e4",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
