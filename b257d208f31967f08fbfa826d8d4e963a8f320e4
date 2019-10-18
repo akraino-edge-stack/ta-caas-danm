@@ -34,6 +34,24 @@
       "revId": "b257d208f31967f08fbfa826d8d4e963a8f320e4",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "325ee43c_551e864f",
+        "filename": "ansible/roles/flannel/templates/flannel-ds.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-10-18T10:08:38Z",
+      "side": 1,
+      "message": "okay, cool!",
+      "parentUuid": "da8fd77e_2bd2453f",
+      "revId": "b257d208f31967f08fbfa826d8d4e963a8f320e4",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
