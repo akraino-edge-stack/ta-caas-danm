@@ -52,6 +52,24 @@
       "revId": "b257d208f31967f08fbfa826d8d4e963a8f320e4",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "181bea33_6d3bc9ba",
+        "filename": "ansible/roles/flannel/templates/flannel-ds.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-10-18T10:09:57Z",
+      "side": 1,
+      "message": "maybe default value should be a one-item list with the current networking.infra_internal_interface though?",
+      "parentUuid": "325ee43c_551e864f",
+      "revId": "b257d208f31967f08fbfa826d8d4e963a8f320e4",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
