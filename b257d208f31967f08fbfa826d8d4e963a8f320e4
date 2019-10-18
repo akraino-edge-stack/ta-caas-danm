@@ -16,6 +16,24 @@
       "revId": "b257d208f31967f08fbfa826d8d4e963a8f320e4",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da8fd77e_2bd2453f",
+        "filename": "ansible/roles/flannel/templates/flannel-ds.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 186
+      },
+      "writtenOn": "2019-10-18T07:09:58Z",
+      "side": 1,
+      "message": "As per flannel documentation https://github.com/coreos/flannel/blob/master/Documentation/configuration.md#key-command-line-options\n\u003e This can be specified multiple times to check each option in order.\n\nThis is made for the scenario, where `caas_oam` network mapped to different interfaces on the hosts. Since it runs as a DaemonSet, it needs to cover every possibilities.",
+      "parentUuid": "86266c62_e26b08af",
+      "revId": "b257d208f31967f08fbfa826d8d4e963a8f320e4",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
