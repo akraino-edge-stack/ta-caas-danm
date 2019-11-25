@@ -34,8 +34,9 @@ RUN apk add --no-cache gcc musl-dev git curl tar linux-headers \
 FROM alpine:3.9
 RUN apk add --no-cache hwdata-pci jq
 
-COPY --from=builder /go/bin/sriovdp /usr/local/bin/
-RUN chmod 700 /usr/local/bin/sriovdp
+COPY init.sh /usr/local/bin/
+COPY --from=builder /go/bin/* /usr/local/bin/
+RUN chmod 700 /usr/local/bin/*
 
 WORKDIR /
 LABEL io.k8s.display-name="SRIOV Network Device Plugin"
