@@ -43,6 +43,10 @@ spec:
       - key: node.kubernetes.io/master
         operator: Exists
         effect: NoSchedule
+      - key: "node-maintenancemode"
+        value: "enabled"
+        operator: "Equal"
+        effect: "NoExecute"
       containers:
       - name: kube-flannel
         image: {{ container_image_names | select('search', '/flannel') | list | last }}
