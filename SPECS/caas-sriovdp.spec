@@ -15,7 +15,7 @@
 %define COMPONENT sriovdp
 %define RPM_NAME caas-%{COMPONENT}
 %define RPM_MAJOR_VERSION 3.1.0
-%define RPM_MINOR_VERSION 0
+%define RPM_MINOR_VERSION 1
 %define IMAGE_TAG %{RPM_MAJOR_VERSION}-%{RPM_MINOR_VERSION}
 %define go_version 1.12.10
 %define SRIOVDP 3.1

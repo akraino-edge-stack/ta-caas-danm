@@ -20,7 +20,7 @@ while true; do
   rootdevs=`jq -r .resourceList[].rootDevices[] </etc/pcidp/config.json 2>/dev/null`
   if [[ -n "$rootdevs" ]]; then
     for pci in $rootdevs; do
-      vf=`cat /sys/bus/pci/devices/0000:$pci/sriov_numvfs`
+      vf=`cat /sys/bus/pci/devices/$pci/sriov_numvfs`
       echo "$pci: $vf VFs"
       if [[ -z "$vf" || "$vf" == "0" ]]; then
         echo "No VFs found -> SR-IOV DP cannot be started"
